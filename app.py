@@ -45,6 +45,7 @@ def result():
     return jsonify(result)
 
 if __name__ == "__main__":
-    app.run(debug=False)
+   port = int(os.environ.get("PORT", 5000))  # Render에서는 PORT를 사용
+    app.run(host="0.0.0.0", port=port, debug=False)  # 0.0.0.0으로 변경)
     
     
