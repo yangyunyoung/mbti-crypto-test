@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import random
 from mbti_data import get_crypto_by_mbti
+import os
 
 app=Flask(__name__)
 
