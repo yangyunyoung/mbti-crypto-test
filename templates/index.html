@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBTI 가상화폐 테스트</title>
+    <script>
+        async function submitTest() {
+            let answers = {};
+            document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+                answers[input.name] = input.value;
+            });
+
+            let response = await fetch("/result", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ answers })
+            });
+
+            let result = await response.json();
+            document.getElementById("result").innerHTML = `당신의 MBTI 유형: <b>${result.mbti}</b> <br> 추천 가상화폐: <b>${result.crypto.name} (${result.crypto.symbol})</b>`;
+        }
+    </script>
+</head>
+<body>
+    <h1>MBTI 기반 가상화폐 추천 테스트</h1>
+
+    <form id="quizForm">
+        {% for q in questions %}
+            <p>{{ q.question }}</p>
+            {% for opt in q.options %}
+                <label><input type="radio" name="{{ q.category }}" value="{{ opt }}"> {{ opt }}</label><br>
+            {% endfor %}
+        {% endfor %}
+    </form>
+
+    <button onclick="submitTest()">결과 확인</button>
+    <p id="result"></p>
+    <script>
+        async function submitTest() {
+            let answers = {};
+            document.querySelectorAll('input[type="radio"]:checked').forEach(input => {
+                answers[input.name] = input.value;
+            });
+    
+            let response = await fetch("/result", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ answers })
+            });
+    
+            let result = await response.json();
+            let resultText = `당신의 MBTI 유형: <b>${result.mbti}</b><br>`;
+    
+            if (result.crypto.includes("예금")) {
+                resultText += `<b>${result.crypto}</b>`;
+            } else {
+                resultText += `추천 가상화폐: <b>${result.crypto}</b><br>현재 가격: <b>${result.price}</b>`;
+            }
+    
+            document.getElementById("result").innerHTML = resultText;
+        }
+    </script>
+</body>
+</html>
+
