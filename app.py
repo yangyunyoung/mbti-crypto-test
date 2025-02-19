@@ -5,17 +5,10 @@ import os
 
 app=Flask(__name__)
 
-# 질문 리스트
-questions = [
-    {"question": "새로운 사람들과 어울리는 게 편하다.", "category": "EI", "options": ["E", "I"]},
-    {"question": "직관보다 사실과 데이터를 신뢰한다.", "category": "SN", "options": ["S", "N"]},
-    {"question": "결정을 내릴 때 감정보다 논리를 따른다.", "category": "TF", "options": ["T", "F"]},
-    {"question": "계획을 세우고 따르는 것을 선호한다.", "category": "JP", "options": ["J", "P"]},
-]
 
 @app.route("/")
 def home():
-    return render_template("index.html", questions=questions)
+    return render_template("index.html")
 
 @app.route("/result", methods=["POST"])
 def result():
