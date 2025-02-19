@@ -145,10 +145,11 @@
             let result = await response.json();
             let resultText = `당신의 MBTI 유형: <b>${result.mbti}</b><br>`;
 
-            if (result.crypto.includes("예금")) {
+            if (typeof result.crypto==="string" && result.crypto.includes("예금")) {
                 resultText += `<b>${result.crypto}</b>`;
             } else {
-                resultText += `추천 가상화폐: <b>${result.crypto}</b><br>현재 가격: <b>${result.price}</b>`;
+                resultText += `추천 가상화폐: <b>${result.crypto.name} (${result.crypto.symbol.toUpperCase()}</b><br>
+                현재 가격: <b>${result.price}</b>`;
             }
 
             // 화면 전환 (질문 → 결과)
@@ -162,7 +163,7 @@
             document.getElementById("resultScreen").style.display = "none";
             document.getElementById("home").style.display = "block";
         }
-        
+
         // 다시하기 버튼 클릭 시 초기화
         function restartTest() {
             scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };

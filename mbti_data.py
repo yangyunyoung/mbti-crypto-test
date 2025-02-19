@@ -1,6 +1,6 @@
 def get_crypto_by_mbti(mbti):
     crypto_mapping = {
-    "INTJ": {"name": "Ethereum", "symbol": "ETH"},
+        "INTJ": {"name": "Ethereum", "symbol": "ETH"},
         "INTP": {"name": "Chainlink", "symbol": "LINK"},
         "ENTJ": {"name": "Solana", "symbol": "SOL"},
         "ENTP": {"name": "Avalanche", "symbol": "AVAX"},
@@ -17,4 +17,4 @@ def get_crypto_by_mbti(mbti):
         "ESTP": {"name": "Uniswap", "symbol": "UNI"},
         "ESFP": {"name": "Gala", "symbol": "GALA"},
     }
-    return crypto_mapping.get(mbti, {"name": "Bitcoin", "symbol": "BTC"})  # 기본값: BTC
+    return crypto_mapping.get(mbti)  
